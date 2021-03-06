@@ -31,9 +31,9 @@ abstract class RakutenRws_Api_AppRakutenApi extends RakutenRws_Api_Base
     protected function genUrl()
     {
         $url  = self::BASE_URL;
-        $url .= '/'.$this->getService();
-        $url .= '/'.$this->getOperation();
-        $url .= '/'.$this->versionMap[$this->version];
+        $url .= '/' . $this->getService();
+        $url .= '/' . $this->getOperation();
+        $url .= '/' . $this->versionMap[$this->version];
 
         return $url;
     }
@@ -75,16 +75,9 @@ abstract class RakutenRws_Api_AppRakutenApi extends RakutenRws_Api_Base
             if (!isset($data[$this->arrayName])) {
                 throw new RakutenRws_Exception();
             }
-
-            $items = array();
-            foreach ($data[$this->arrayName] as $item) {
-                $items[] = $item[$this->entityName];
-            }
-
-            $appresponse->setIterator($items);
         }
 
-        return $appresponse;
+        return $appresponse->getData();
     }
 
     public function setVersion($version)
